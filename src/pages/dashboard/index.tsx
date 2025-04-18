@@ -7,7 +7,7 @@ import { getSession } from "next-auth/react";
 import { Textarea } from "../../components/textarea";
 import { FiShare2 } from "react-icons/fi";
 import { FaTrash } from "react-icons/fa";
-import { Timestamp } from "firebase/firestore";
+
 import { db } from "../../services/firebaseConnections";
 
 import {
@@ -82,7 +82,7 @@ export default function Dashboard({ user }: HomeProps) {
     try {
       await addDoc(collection(db, "tarefas"), {
         tarefa: input,
-        created: Timestamp.now(),
+        created: new Date(),
         user: user?.email,
         public: publicTask,
       });
